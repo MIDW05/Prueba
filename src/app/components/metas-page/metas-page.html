@@ -1,0 +1,28 @@
+<mat-card class="form">
+  <h2>{{ edit ? 'Editar meta' : 'Nueva meta' }}</h2>
+  <div class="grid">
+    <mat-form-field><mat-label>Título</mat-label><input matInput [(ngModel)]="form.titulo"></mat-form-field>
+    <mat-form-field><mat-label>Tipo</mat-label><mat-select [(ngModel)]="form.tipoMeta"><mat-option *ngFor="let t of tipos" [value]="t">{{t}}</mat-option></mat-select></mat-form-field>
+    <mat-form-field><mat-label>Fecha límite</mat-label><input matInput [matDatepicker]="dp" [(ngModel)]="form.fecha"><mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle><mat-datepicker #dp></mat-datepicker></mat-form-field>
+    <mat-form-field class="full"><mat-label>Descripción</mat-label><textarea matInput rows="3" [(ngModel)]="form.descripcion"></textarea></mat-form-field>
+  </div>
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="guardar()" [disabled]="!form.titulo || !form.descripcion">Guardar</button>
+    <button mat-button (click)="cancelar()" *ngIf="edit">Cancelar</button>
+  </div>
+</mat-card>
+
+<mat-card>
+  <h2>Metas</h2>
+  <mat-nav-list>
+    <a mat-list-item *ngFor="let m of lista()">
+      <mat-icon matListItemIcon>flag</mat-icon>
+      <div matListItemTitle>{{ m.titulo }}</div>
+      <div matListItemLine>{{ m.tipoMeta }} <span *ngIf="m.fechaLimite">• {{ m.fechaLimite | date }}</span></div>
+      <span class="list-actions">
+        <button mat-icon-button (click)="editar(m)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="borrar(m)"><mat-icon>delete</mat-icon></button>
+      </span>
+    </a>
+  </mat-nav-list>
+</mat-card>

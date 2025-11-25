@@ -1,0 +1,158 @@
+:host {
+  display: block;
+}
+
+/* Fondo general */
+.auth-page {
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 24px;
+}
+
+/* Gradiente específico para LOGIN (morado) */
+.login-bg {
+  background: radial-gradient(circle at top left, #a855f7 0%, #7c3aed 30%, #1f172a 70%, #020014 100%);
+}
+
+/* Contenedor logo + tarjeta */
+.auth-inner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Logo concéntrico */
+.logo-mark {
+  width: 96px;
+  height: 96px;
+  border-radius: 24px;
+  background: radial-gradient(circle at 30% 30%, #ffffff, #111827);
+  padding: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 18px;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+}
+
+.logo-ring {
+  border-radius: 999px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ring-1 {
+  width: 80px;
+  height: 80px;
+  background: radial-gradient(circle, #f9fafb 0%, #020617 80%);
+}
+
+.ring-2 {
+  width: 52px;
+  height: 52px;
+  background: radial-gradient(circle, #020617 0%, #e5e7eb 70%);
+}
+
+.ring-3 {
+  width: 24px;
+  height: 24px;
+  background: radial-gradient(circle, #f9fafb 0%, #020617 85%);
+}
+
+/* Tarjeta blanca */
+.auth-card {
+  width: 100%;
+  max-width: 360px;
+  background: #ffffff;
+  border-radius: 20px;
+  padding: 24px 28px 28px;
+  box-shadow: 0 22px 45px rgba(0, 0, 0, 0.55);
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.title {
+  font-size: 1.4rem;
+  font-weight: 600;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  font-size: 0.9rem;
+  color: #6b7280;
+  margin-bottom: 18px;
+}
+
+/* Mensaje de error (si lo usas) */
+.error-msg {
+  color: #b91c1c;
+  font-size: 0.8rem;
+  margin-bottom: 10px;
+}
+
+/* Formulario */
+.form {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.field input {
+  width: 100%;
+  box-sizing: border-box;     /* evita que se salga del cuadro */
+  border-radius: 999px;
+  border: 1px solid #e5e7eb;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  outline: none;
+  background: #f9fafb;
+}
+
+.field input:focus {
+  border-color: #4b5563;
+  background: #ffffff;
+}
+
+/* Botón principal oscuro */
+.primary-btn {
+  margin-top: 6px;
+  width: 100%;
+  box-sizing: border-box;
+  border: none;
+  border-radius: 999px;
+  padding: 10px 14px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  background: #020617;
+  color: #f9fafb;
+  cursor: pointer;
+}
+
+.primary-btn:hover {
+  background: #111827;
+}
+
+/* Enlaces inferiores */
+.secondary-link {
+  margin-top: 10px;
+  font-size: 0.8rem;
+  color: #6b7280;
+}
+
+.link-btn {
+  border: none;
+  padding: 0;
+  margin: 0;
+  background: transparent;
+  color: #111827;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.link-btn:hover {
+  text-decoration: underline;
+}

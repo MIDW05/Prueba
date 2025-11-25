@@ -1,0 +1,179 @@
+<div class="tasks-page">
+  <!-- ENCABEZADO -->
+  <div class="header-row">
+    <div>
+      <h1>Mis Tareas</h1>
+      <p class="subtitle">Organiza tu día, conquista tus objetivos ✨</p>
+    </div>
+
+    <button mat-raised-button color="primary" (click)="showForm = !showForm">
+      <mat-icon>add</mat-icon>
+      Nueva Tarea
+    </button>
+  </div>
+
+  <!-- KPIs -->
+  <div class="kpi-row">
+    <mat-card class="kpi-card kpi-total">
+      <div class="kpi-label">Total de Tareas</div>
+      <div class="kpi-value">{{ totalTareas() }}</div>
+    </mat-card>
+
+    <mat-card class="kpi-card kpi-pendientes">
+      <div class="kpi-label">Pendientes</div>
+      <div class="kpi-value">{{ pendientesCount() }}</div>
+    </mat-card>
+
+    <mat-card class="kpi-card kpi-completadas">
+      <div class="kpi-label">Completadas</div>
+      <div class="kpi-value">{{ completadasCount() }}</div>
+    </mat-card>
+  </div>
+
+  <!-- FORMULARIO NUEVA TAREA -->
+  <mat-card class="new-task-card" *ngIf="showForm">
+    <h2>Crear nueva tarea</h2>
+
+    <div class="new-task-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Título</mat-label>
+        <input matInput [(ngModel)]="form.titulo" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Prioridad</mat-label>
+        <mat-select [(ngModel)]="form.prioridad">
+          <mat-option *ngFor="let p of PRIORIDADES" [value]="p">{{ p }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Vencimiento</mat-label>
+        <input
+          matInput
+          type="date"
+          [ngModel]="form.fechaVenc | date: 'yyyy-MM-dd'"
+          (ngModelChange)="onFechaChange($event)"
+        />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Duración estimada (min)</mat-label>
+        <input matInput type="number" min="5" [(ngModel)]="form.duracion" />
+      </mat-form-field>
+    </div>
+
+    <mat-form-field appearance="outline" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput rows="3" [(ngModel)]="form.descripcion"></textarea>
+    </mat-form-field>
+
+    <div class="new-task-actions">
+      <button mat-stroked-button (click)="showForm = false">Cancelar</button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="guardarNueva()"
+        [disabled]="!form.titulo"
+      >
+        Guardar
+      </button>
+    </div>
+  </mat-card>
+
+  <!-- PESTAÑAS + LISTA -->
+  <mat-card class="tabs-card">
+    <div class="tabs-header">
+      <button
+        mat-button
+        [class.tab-active]="tab === 'ACTIVAS'"
+        (click)="tab = 'ACTIVAS'"
+      >
+        Activas ({{ pendientesCount() }})
+      </button>
+
+      <button
+        mat-button
+        [class.tab-active]="tab === 'COMPLETADAS'"
+        (click)="tab = 'COMPLETADAS'"
+      >
+        Completadas ({{ completadasCount() }})
+      </button>
+    </div>
+
+    <!-- TAB ACTIVAS -->
+    <div *ngIf="tab === 'ACTIVAS'">
+      <div *ngFor="let t of tareasActivas()" class="task-row">
+        <mat-checkbox
+          class="task-check"
+          [checked]="t.estado === 'COMPLETADA'"
+          (change)="toggleComplete(t)"
+        >
+        </mat-checkbox>
+
+        <div class="task-main">
+          <div class="task-title">{{ t.titulo }}</div>
+
+          <div class="task-description" *ngIf="t.descripcion">
+            {{ t.descripcion }}
+          </div>
+
+          <div class="task-meta">
+            <span class="priority-chip" [ngClass]="prioridadClass(t.prioridad)">
+              {{ t.prioridad }}
+            </span>
+            <span class="due-date">
+              Vence: {{ t.fechaVencimiento | date: 'dd/MM/yyyy' }}
+            </span>
+          </div>
+        </div>
+
+        <button mat-icon-button color="warn" (click)="eliminar(t)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <div class="empty" *ngIf="!tareasActivas().length">
+        No hay tareas activas.
+      </div>
+    </div>
+
+    <!-- TAB COMPLETADAS -->
+    <div *ngIf="tab === 'COMPLETADAS'">
+      <div *ngFor="let t of tareasCompletadas()" class="task-row task-row--completed">
+        <mat-checkbox class="task-check" [checked]="true" disabled>
+        </mat-checkbox>
+
+        <div class="task-main">
+          <div class="task-title task-title--completed">{{ t.titulo }}</div>
+
+          <div class="task-description" *ngIf="t.descripcion">
+            {{ t.descripcion }}
+          </div>
+
+          <div class="task-meta">
+            <span class="priority-chip" [ngClass]="prioridadClass(t.prioridad)">
+              {{ t.prioridad }}
+            </span>
+            <span class="due-date">
+              Completada:
+              {{
+                t.fechaFinalizacion
+                  ? (t.fechaFinalizacion | date: 'dd/MM/yyyy')
+                  : (t.fechaVencimiento | date: 'dd/MM/yyyy')
+              }}
+            </span>
+          </div>
+        </div>
+
+        <button mat-icon-button color="warn" (click)="eliminar(t)">
+          <mat-icon>delete</mat-icon>
+        </button>
+      </div>
+
+      <div class="empty" *ngIf="!tareasCompletadas().length">
+        Aún no tienes tareas completadas.
+      </div>
+    </div>
+  </mat-card>
+</div>

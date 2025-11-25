@@ -1,0 +1,24 @@
+<mat-card class="form">
+  <h2>{{ edit ? 'Editar hábito' : 'Nuevo hábito' }}</h2>
+  <div class="grid">
+    <mat-form-field><mat-label>Nombre</mat-label><input matInput [(ngModel)]="nombre"></mat-form-field>
+  </div>
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="guardar()" [disabled]="!nombre">Guardar</button>
+    <button mat-button (click)="cancelar()" *ngIf="edit">Cancelar</button>
+  </div>
+</mat-card>
+
+<mat-card>
+  <h2>Hábitos</h2>
+  <mat-nav-list>
+    <a mat-list-item *ngFor="let h of lista()">
+      <mat-icon matListItemIcon>auto_awesome</mat-icon>
+      <div matListItemTitle>{{ h.nombre }}</div>
+      <span class="list-actions">
+        <button mat-icon-button (click)="editar(h)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="borrar(h)"><mat-icon>delete</mat-icon></button>
+      </span>
+    </a>
+  </mat-nav-list>
+</mat-card>

@@ -1,0 +1,95 @@
+<mat-sidenav-container class="shell">
+  <!-- SIDEBAR -->
+  <mat-sidenav mode="side" [opened]="true" class="sidebar">
+    <div class="sidebar-inner">
+      <!-- Branding -->
+      <div class="brand">
+        <div class="brand-logo">
+          <div class="brand-logo-ring ring-1">
+            <div class="brand-logo-ring ring-2">
+              <div class="brand-logo-ring ring-3"></div>
+            </div>
+          </div>
+        </div>
+        <div class="brand-text">
+          <div class="brand-title">Ideas</div>
+          <div class="brand-subtitle">Tu espacio productivo</div>
+        </div>
+      </div>
+
+      <!-- Menú -->
+      <nav class="nav-list">
+        <a mat-list-item
+           routerLink="/app/dashboard"
+           routerLinkActive="active">
+          <mat-icon matListItemIcon>space_dashboard</mat-icon>
+          <span matListItemTitle>Dashboard</span>
+        </a>
+
+        <a mat-list-item
+           routerLink="/app/tareas"
+           routerLinkActive="active">
+          <mat-icon matListItemIcon>checklist</mat-icon>
+          <span matListItemTitle>Tareas</span>
+        </a>
+
+        <a mat-list-item
+           routerLink="/app/proyectos"
+           routerLinkActive="active">
+          <mat-icon matListItemIcon>work_outline</mat-icon>
+          <span matListItemTitle>Proyectos</span>
+        </a>
+
+        <a mat-list-item
+           routerLink="/app/notas"
+           routerLinkActive="active">
+          <mat-icon matListItemIcon>sticky_note_2</mat-icon>
+          <span matListItemTitle>Notas</span>
+        </a>
+
+        <!-- Estos dos siguen apuntando al dashboard,
+             pero conceptualmente representan secciones internas -->
+        <a mat-list-item
+           routerLink="/app/dashboard"
+           routerLinkActive="active">
+          <mat-icon matListItemIcon>event</mat-icon>
+          <span matListItemTitle>Calendario</span>
+        </a>
+
+        <a mat-list-item
+           routerLink="/app/metas"
+           routerLinkActive="active">
+          <mat-icon matListItemIcon>flag</mat-icon>
+          <span matListItemTitle>Metas</span>
+        </a>
+
+        <a mat-list-item
+           routerLink="/app/dashboard"
+           routerLinkActive="active">
+          <mat-icon matListItemIcon>timer</mat-icon>
+          <span matListItemTitle>Pomodoro</span>
+        </a>
+
+        <a mat-list-item
+           routerLink="/app/habitos"
+           routerLinkActive="active">
+          <mat-icon matListItemIcon>auto_awesome</mat-icon>
+          <span matListItemTitle>Hábitos</span>
+        </a>
+      </nav>
+
+      <!-- Logout abajo -->
+      <div class="sidebar-footer">
+        <button mat-stroked-button color="primary" class="logout-btn" (click)="logout()">
+          <mat-icon>arrow_back</mat-icon>
+          Cerrar sesión
+        </button>
+      </div>
+    </div>
+  </mat-sidenav>
+
+  <!-- CONTENIDO PRINCIPAL -->
+  <mat-sidenav-content class="main-content">
+    <router-outlet></router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

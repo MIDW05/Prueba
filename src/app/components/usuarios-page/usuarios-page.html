@@ -1,0 +1,21 @@
+<mat-card class="form">
+  <h2>Crear usuario</h2>
+  <div class="grid">
+    <mat-form-field><mat-label>Nombre</mat-label><input matInput [(ngModel)]="nuevo.nombre"></mat-form-field>
+    <mat-form-field><mat-label>Email</mat-label><input matInput [(ngModel)]="nuevo.email"></mat-form-field>
+    <mat-form-field><mat-label>Contraseña</mat-label><input matInput type="password" [(ngModel)]="nuevo.contrasena"></mat-form-field>
+  </div>
+  <button mat-raised-button color="primary" (click)="crear()">Crear</button>
+</mat-card>
+
+<mat-card>
+  <h2>Usuarios</h2>
+  <mat-nav-list>
+    <a mat-list-item *ngFor="let u of lista()">
+      <mat-icon matListItemIcon>person</mat-icon>
+      <div matListItemTitle>{{u.nombre}}</div>
+      <div matListItemLine>{{u.email}}</div>
+      <button mat-stroked-button style="margin-left:auto" (click)="usar(u)">Usar</button>
+    </a>
+  </mat-nav-list>
+</mat-card>

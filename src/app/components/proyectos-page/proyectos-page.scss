@@ -1,0 +1,218 @@
+.projects-page {
+  padding: 24px 32px;
+  min-height: calc(100vh - 64px);
+  color: #f5f5ff;
+  background: radial-gradient(circle at top left, #171c36 0, #050611 55%);
+}
+
+/* HEADER */
+.header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+
+  h1 {
+    margin: 0;
+    font-size: 28px;
+    font-weight: 700;
+  }
+
+  .subtitle {
+    margin: 4px 0 0;
+    font-size: 14px;
+    opacity: 0.85;
+  }
+
+  button {
+    border-radius: 999px;
+    padding: 0 20px;
+    font-weight: 600;
+    box-shadow: 0 0 18px rgba(80, 140, 255, 0.6);
+  }
+
+  mat-icon {
+    margin-right: 4px;
+  }
+}
+
+/* FORM */
+.form-card {
+  margin-bottom: 24px;
+  border-radius: 18px;
+  padding: 16px 18px;
+  background: rgba(10, 15, 50, 0.96);
+  color: #f9fbff;
+  box-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+
+  h2 {
+    margin: 0 0 12px;
+    font-size: 18px;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+
+  .full {
+    grid-column: 1 / -1;
+  }
+}
+
+.form-actions {
+  margin-top: 12px;
+  display: flex;
+  justify-content: flex-end;
+  gap: 8px;
+
+  button {
+    border-radius: 999px;
+  }
+}
+
+/* GRID DE PROYECTOS */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 20px;
+}
+
+/* Tarjeta base */
+.project-card {
+  position: relative;
+  border-radius: 18px;
+  padding: 16px 16px 14px;
+  background: #f8f9ff;
+  color: #1a1d2c;
+  box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
+}
+
+/* Color de acento por tarjeta */
+.card--blue .project-icon {
+  background: #2d8bff22;
+  color: #2d8bff;
+}
+.card--green .project-icon {
+  background: #22c55e22;
+  color: #22c55e;
+}
+.card--purple .project-icon {
+  background: #a855f722;
+  color: #a855f7;
+}
+
+/* Header de cada tarjeta */
+.project-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 10px;
+}
+
+.project-icon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.project-actions {
+  display: flex;
+  gap: 4px;
+
+  button {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Contenido */
+.project-body {
+  margin-bottom: 12px;
+}
+
+.project-title {
+  font-weight: 600;
+  font-size: 16px;
+  margin-bottom: 4px;
+}
+
+.project-description {
+  font-size: 13px;
+  opacity: 0.75;
+}
+
+/* Progreso */
+.project-progress {
+  font-size: 12px;
+}
+
+.progress-label-row {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 4px;
+}
+
+.progress-bar {
+  position: relative;
+  width: 100%;
+  height: 6px;
+  border-radius: 999px;
+  background: #dde1ff;
+  overflow: hidden;
+  margin-bottom: 4px;
+}
+
+.progress-fill {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #4f46e5, #a855f7);
+}
+
+.progress-tasks {
+  opacity: 0.8;
+}
+
+/* Estado vacío */
+.empty {
+  grid-column: 1 / -1;
+  padding: 16px;
+  font-size: 13px;
+  opacity: 0.8;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1120px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-page {
+    padding: 16px;
+  }
+
+  .projects-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .header-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+
+    button {
+      align-self: stretch;
+      justify-content: center;
+    }
+  }
+}

@@ -1,0 +1,100 @@
+<div class="projects-page">
+  <!-- ENCABEZADO -->
+  <div class="header-row">
+    <div>
+      <h1>Mis Proyectos</h1>
+      <p class="subtitle">Construye el futuro, un proyecto a la vez 🚀</p>
+    </div>
+
+    <button mat-raised-button color="primary" (click)="abrirNuevo()">
+      <mat-icon>add</mat-icon>
+      Nuevo Proyecto
+    </button>
+  </div>
+
+  <!-- FORM NUEVO / EDITAR PROYECTO -->
+  <mat-card class="form-card" *ngIf="showForm">
+    <h2>{{ edit ? 'Editar proyecto' : 'Nuevo proyecto' }}</h2>
+
+    <div class="form-grid">
+      <mat-form-field appearance="outline">
+        <mat-label>Nombre</mat-label>
+        <input matInput [(ngModel)]="form.nombre" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline" class="full">
+        <mat-label>Descripción</mat-label>
+        <input matInput [(ngModel)]="form.descripcion" />
+      </mat-form-field>
+    </div>
+
+    <div class="form-actions">
+      <button mat-stroked-button (click)="cancelar()">Cancelar</button>
+      <button
+        mat-raised-button
+        color="primary"
+        (click)="guardar()"
+        [disabled]="!form.nombre.trim()"
+      >
+        Guardar
+      </button>
+    </div>
+  </mat-card>
+
+  <!-- GRID DE PROYECTOS -->
+  <div class="projects-grid">
+    <mat-card
+      class="project-card"
+      *ngFor="let p of proyectos(); let i = index"
+      [ngClass]="cardColorClass(i)"
+    >
+      <!-- Top row: icono + acciones -->
+      <div class="project-header">
+        <div class="project-icon">
+          <mat-icon>folder</mat-icon>
+        </div>
+
+        <div class="project-actions">
+          <button mat-icon-button (click)="editarProyecto(p)">
+            <mat-icon>edit</mat-icon>
+          </button>
+          <button mat-icon-button color="warn" (click)="borrar(p)">
+            <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </div>
+
+      <!-- Contenido -->
+      <div class="project-body">
+        <div class="project-title">{{ p.nombre }}</div>
+        <div class="project-description">
+          {{ p.descripcion || 'Sin descripción' }}
+        </div>
+      </div>
+
+      <!-- Progreso -->
+      <div class="project-progress">
+        <div class="progress-label-row">
+          <span>Progreso</span>
+          <span>{{ p.progresoPorc ?? 0 }}%</span>
+        </div>
+
+        <div class="progress-bar">
+          <div
+            class="progress-fill"
+            [style.width.%]="p.progresoPorc ?? 0"
+          ></div>
+        </div>
+
+        <div class="progress-tasks">
+          Tareas
+          {{ p.tareasCompletadas ?? 0 }}/{{ p.tareasTotales ?? 0 }}
+        </div>
+      </div>
+    </mat-card>
+
+    <div class="empty" *ngIf="!proyectos().length">
+      Aún no tienes proyectos. ¡Crea el primero con “Nuevo Proyecto”! 💡
+    </div>
+  </div>
+</div>

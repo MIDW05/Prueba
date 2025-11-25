@@ -1,0 +1,6 @@
+.form { margin-bottom: 16px; }
+.grid { display: grid; gap: 12px; grid-template-columns: 1fr 1fr; }
+.full { grid-column: 1 / -1; }
+.actions { margin-top: 8px; }
+.list-actions { margin-left: auto; }
+@media (max-width: 900px) { .grid { grid-template-columns: 1fr; } }

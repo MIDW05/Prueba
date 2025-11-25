@@ -1,0 +1,68 @@
+<div class="auth-page register-bg">
+  <div class="auth-inner">
+    <!-- LOGO -->
+    <div class="logo-mark">
+      <div class="logo-ring ring-1">
+        <div class="logo-ring ring-2">
+          <div class="logo-ring ring-3"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TARJETA -->
+    <div class="auth-card">
+      <div class="title">Comienza tu Viaje</div>
+      <div class="subtitle">Tu productividad está a un paso</div>
+
+      <!-- Mensaje de error -->
+      <div *ngIf="errorMsg" class="error-msg">
+        {{ errorMsg }}
+      </div>
+
+      <form class="form" (ngSubmit)="registrar()">
+        <div class="field">
+          <input
+            type="text"
+            name="nombre"
+            [(ngModel)]="nuevo.nombre"
+            placeholder="Nombre Completo">
+        </div>
+
+        <div class="field">
+          <input
+            type="email"
+            name="email"
+            [(ngModel)]="nuevo.email"
+            placeholder="Email">
+        </div>
+
+        <div class="field">
+          <input
+            type="password"
+            name="password"
+            [(ngModel)]="nuevo.contrasena"
+            placeholder="Password">
+        </div>
+
+        <div class="field">
+          <input
+            type="password"
+            name="confirmPassword"
+            [(ngModel)]="confirmPassword"
+            placeholder="Confirmar Password">
+        </div>
+
+        <button type="submit" class="primary-btn">
+          REGISTRO
+        </button>
+      </form>
+
+      <div class="bottom-link">
+        Ya tienes cuenta?
+        <button type="button" class="link-btn" (click)="irALogin()">
+          Inicia sesión
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

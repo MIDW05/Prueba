@@ -1,0 +1,148 @@
+<div class="dashboard-page">
+  <!-- Saludo -->
+  <header class="dash-header">
+    <div>
+      <h1>¡Buenas tardes!</h1>
+      <p>Vamos a lograr cosas increíbles hoy 🚀</p>
+    </div>
+  </header>
+
+  <!-- Cita motivacional -->
+  <section class="quote-banner">
+    <div class="quote-icon">
+      <mat-icon>format_quote</mat-icon>
+    </div>
+    <div class="quote-text">
+      <p class="quote">
+        “Tu futuro es creado por lo que haces hoy, no mañana.”
+      </p>
+      <p class="author">— Robert Kiyosaki</p>
+    </div>
+  </section>
+
+  <!-- KPIs (ahora dinámicos) -->
+  <section class="kpi-row">
+    <div class="kpi-card kpi-1">
+      <div class="kpi-label">TAREAS COMPLETADAS HOY</div>
+      <div class="kpi-value">
+        {{ tareasHoy().completadas }}
+        <span class="kpi-sub">/{{ tareasHoy().totales }}</span>
+      </div>
+    </div>
+
+    <div class="kpi-card kpi-2">
+      <div class="kpi-label">PROYECTOS ACTIVOS</div>
+      <div class="kpi-value">{{ proyectosActivos() }}</div>
+    </div>
+
+    <div class="kpi-card kpi-3">
+      <div class="kpi-label">METAS EN PROGRESO</div>
+      <div class="kpi-value">{{ metasEnProgreso() }}</div>
+    </div>
+
+    <div class="kpi-card kpi-4">
+      <div class="kpi-label">HÁBITOS CONFIGURADOS</div>
+      <div class="kpi-value">
+        {{ habitosConfigurados() }}
+      </div>
+    </div>
+  </section>
+
+  <!-- Paneles medios -->
+  <section class="panels-row">
+    <!-- Panel 1: Barras -->
+    <article class="panel">
+      <header class="panel-header">
+        <mat-icon>bar_chart</mat-icon>
+        <span>Tareas Completadas por Día</span>
+      </header>
+      <div class="panel-body chart-bars">
+        <div class="bar-col" *ngFor="let d of tareasPorDia()">
+          <div class="bar"
+               [ngStyle]="{ height: (30 + d.count * 16) + 'px', opacity: d.count ? 1 : 0.35 }"></div>
+          <span class="bar-label">{{ d.dia }}</span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Panel 2: Línea -->
+    <article class="panel">
+      <header class="panel-header">
+        <mat-icon>show_chart</mat-icon>
+        <span>Nivel de Productividad</span>
+      </header>
+      <div class="panel-body chart-line">
+        <div class="chart-line-grid">
+          <div class="line"></div>
+          <div class="dot dot-1"></div>
+          <div class="dot dot-2"></div>
+          <div class="dot dot-3"></div>
+          <div class="dot dot-4"></div>
+        </div>
+        <div class="chart-caption">
+          Actividad Reciente
+          <span class="chart-caption-extra">
+            • Hoy: {{ minutosEnfoqueHoy() }} min de enfoque
+          </span>
+        </div>
+      </div>
+    </article>
+
+    <!-- Panel 3: Logros -->
+    <article class="panel">
+      <header class="panel-header">
+        <mat-icon>emoji_events</mat-icon>
+        <span>Logros</span>
+      </header>
+      <div class="panel-body achievements">
+        <div class="achievement-card">
+          <div class="badge-icon">
+            <mat-icon>star</mat-icon>
+          </div>
+          <div class="badge-text">
+            <div class="badge-title">Primeras Tareas</div>
+            <div class="badge-sub">Completaste tareas en Névoa</div>
+          </div>
+        </div>
+
+        <div class="achievement-card">
+          <div class="badge-icon">
+            <mat-icon>flare</mat-icon>
+          </div>
+          <div class="badge-text">
+            <div class="badge-title">Racha de Pomodoro</div>
+            <div class="badge-sub">Sesiones de enfoque completadas</div>
+          </div>
+        </div>
+      </div>
+    </article>
+  </section>
+
+  <!-- Actividad reciente (dinámica, basada en tareas/proyectos) -->
+  <section class="activity-card">
+    <header class="activity-header">
+      <div class="activity-title">
+        <mat-icon>history</mat-icon>
+        <span>Actividad Reciente</span>
+      </div>
+    </header>
+
+    <ul class="activity-list">
+      <li class="activity-item" *ngFor="let a of actividadReciente()">
+        <div class="bullet"></div>
+        <div class="activity-text">
+          <div class="activity-main">{{ a.texto }}</div>
+          <div class="activity-meta">{{ a.detalle }}</div>
+        </div>
+      </li>
+
+      <li class="activity-item" *ngIf="!actividadReciente().length">
+        <div class="bullet"></div>
+        <div class="activity-text">
+          <div class="activity-main">Empieza creando tus primeras tareas y proyectos.</div>
+          <div class="activity-meta">No hay actividad registrada todavía.</div>
+        </div>
+      </li>
+    </ul>
+  </section>
+</div>

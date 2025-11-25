@@ -1,0 +1,27 @@
+<mat-card class="form">
+  <h2>{{ edit ? 'Editar nota' : 'Nueva nota' }}</h2>
+  <div class="grid">
+    <mat-form-field><mat-label>Título</mat-label><input matInput [(ngModel)]="form.titulo"></mat-form-field>
+    <mat-form-field><mat-label>Categoría</mat-label><input matInput [(ngModel)]="form.categoria"></mat-form-field>
+    <mat-form-field class="full"><mat-label>Contenido</mat-label><textarea matInput rows="3" [(ngModel)]="form.contenido"></textarea></mat-form-field>
+  </div>
+  <div class="actions">
+    <button mat-raised-button color="primary" (click)="guardar()" [disabled]="!form.titulo || !form.categoria">Guardar</button>
+    <button mat-button (click)="cancelar()" *ngIf="edit">Cancelar</button>
+  </div>
+</mat-card>
+
+<mat-card>
+  <h2>Notas</h2>
+  <mat-nav-list>
+    <a mat-list-item *ngFor="let n of lista()">
+      <mat-icon matListItemIcon>note</mat-icon>
+      <div matListItemTitle>{{ n.titulo }}</div>
+      <div matListItemLine>{{ n.categoria }}</div>
+      <span class="list-actions">
+        <button mat-icon-button (click)="editar(n)"><mat-icon>edit</mat-icon></button>
+        <button mat-icon-button color="warn" (click)="borrar(n)"><mat-icon>delete</mat-icon></button>
+      </span>
+    </a>
+  </mat-nav-list>
+</mat-card>

@@ -54,4 +54,3 @@ export interface MetaDTO     {
   fechaLimite?: string; // ISO (opcional)
 }
 
-09h67uyt54r32f45hy6789
